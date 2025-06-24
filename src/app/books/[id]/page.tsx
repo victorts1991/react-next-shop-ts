@@ -4,7 +4,7 @@ import AddToCartButton from '@/components/AddToCartButton';
 
 
 async function getBook(id: string): Promise<Book | undefined> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/books.json`);
+  const res = await fetch(`/books.json`);
   if (!res.ok) {
     console.error('Failed to fetch books for detail page:', res.status, res.statusText);
     return undefined;

@@ -4,7 +4,7 @@ import { Book } from '@/types';
 
 async function getBooks(): Promise<Book[]> {
   
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/books.json`)
+  const res = await fetch(`/books.json`)
 
   if (!res.ok) {
     console.error('Failed to fetch books:', res.status, res.statusText);
