@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "title": "A Jornada do Herói",
+    "author": "Joseph Campbell",
+    "price": 49.90,
+    "image": "/images/book1.jpg",
+    "description": "Uma análise profunda sobre o mito do herói, explorando os padrões narrativos universais presentes em mitos e lendas de diversas culturas. Um clássico para escritores e amantes da mitologia."
+  },
+  {
+    "id": "2",
+    "title": "1984",
+    "author": "George Orwell",
+    "price": 35.00,
+    "image": "/images/book2.jpg",
+    "description": "Um romance distópico que descreve uma sociedade totalitária, onde o governo Big Brother controla todos os aspectos da vida das pessoas, desde seus pensamentos até suas emoções. Uma obra atemporal sobre liberdade e vigilância."
+  },
+  {
+    "id": "3",
+    "title": "O Senhor dos Anéis",
+    "author": "J.R.R. Tolkien",
+    "price": 75.50,
+    "image": "/images/book3.jpg",
+    "description": "Uma épica aventura de fantasia que narra a jornada de Frodo Bolseiro para destruir um anel mágico e impedir que o Lorde das Trevas Sauron domine a Terra Média. Repleta de criaturas fantásticas, batalhas épicas e temas profundos."
+  },
+  {
+    "id": "4",
+    "title": "Cem Anos de Solidão",
+    "author": "Gabriel García Márquez",
+    "price": 58.00,
+    "image": "/images/book4.jpg",
+    "description": "A saga da família Buendía através de várias gerações na fictícia cidade de Macondo, misturando realismo e elementos fantásticos. Uma obra-prima do realismo mágico latino-americano."
+  }
+]

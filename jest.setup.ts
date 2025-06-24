@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom'
 
+process.env.NEXT_PUBLIC_BASE_URL = 'http://localhost:3000'; 
+
 const localStorageMock = (() => {
   let store: { [key: string]: string } = {};
   return {
@@ -23,6 +25,8 @@ global.fetch = jest.fn((input: RequestInfo | URL, init?: RequestInit | undefined
       ]),
     } as Response)
   }
+
+  
   
   return Promise.reject(new Error(`Fetch not mocked for URL: ${input.toString()}`))
 });
