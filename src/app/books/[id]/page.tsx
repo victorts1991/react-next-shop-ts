@@ -3,7 +3,7 @@ import { Book } from '@/types';
 import AddToCartButton from '@/components/AddToCartButton'; 
 
 
-async function getBook(id: any): Promise<Book | undefined> {
+async function getBook(id: string): Promise<Book | undefined> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/books.json`);
   if (!res.ok) {
     console.error('Failed to fetch books for detail page:', res.status, res.statusText);
@@ -13,7 +13,7 @@ async function getBook(id: any): Promise<Book | undefined> {
   return books.find(book => book.id === id);
 }
 
-export default async function BookDetailPage({ params }: { params: { id: any } }) {
+export default async function BookDetailPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const book = await getBook(id);
 
