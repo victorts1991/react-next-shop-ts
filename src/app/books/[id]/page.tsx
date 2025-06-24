@@ -4,7 +4,11 @@ import AddToCartButton from '@/components/AddToCartButton';
 
 
 async function getBook(id: string): Promise<Book | undefined> {
-  const res = await fetch(`/books.json`);
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}` 
+    : process.env.NEXT_PUBLIC_BASE_URL;
+
+  const res = await fetch(`${baseUrl}/books.json`)
   if (!res.ok) {
     console.error('Failed to fetch books for detail page:', res.status, res.statusText);
     return undefined;
