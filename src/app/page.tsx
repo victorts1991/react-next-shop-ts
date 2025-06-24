@@ -2,20 +2,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Book } from '@/types';
 
+import fs from 'fs/promises';
+import path from 'path'; 
+
 async function getBooks(): Promise<Book[]> {
   
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}` 
-    : process.env.NEXT_PUBLIC_BASE_URL;
+  const filePath = path.join(process.cwd(), 'public', 'books.json')
 
-  const res = await fetch(`${baseUrl}/books.json`)
+  const fileContents = await fs.readFile(filePath, 'utf8')
+  const books: Book[] = JSON.parse(fileContents);
 
-  if (!res.ok) {
-    console.error('Failed to fetch books:', res.status, res.statusText);
-    return []; 
-  }
-  return res.json();
+  return books
 }
+
 
 export default async function HomePage() {
   const books = await getBooks();

@@ -3,18 +3,31 @@ import { Book } from '@/types';
 import AddToCartButton from '@/components/AddToCartButton'; 
 
 
-async function getBook(id: string): Promise<Book | undefined> {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}` 
-    : process.env.NEXT_PUBLIC_BASE_URL;
+// Importe os módulos Node.js para acesso ao sistema de arquivos
+import fs from 'fs/promises'; // Para ler arquivos assincronamente
+import path from 'path';     // Para construir caminhos de arquivo de forma segura
 
-  const res = await fetch(`${baseUrl}/books.json`)
-  if (!res.ok) {
-    console.error('Failed to fetch books for detail page:', res.status, res.statusText);
+// Esta função agora lerá o JSON diretamente do disco durante o build/render no servidor
+async function getBook(id?: string): Promise<Book | undefined> {
+  // Constrói o caminho absoluto para 'public/books.json' a partir da raiz do projeto
+  // process.cwd() é o diretório de trabalho atual (raiz do projeto no Vercel build)
+  const filePath = path.join(process.cwd(), 'public', 'books.json');
+  
+  console.log('DEBUG: Tentando ler livros de:', filePath); // Para depuração no log do Vercel
+
+  try {
+    // Lê o conteúdo do arquivo
+    const fileContents = await fs.readFile(filePath, 'utf8');
+    // Faz o parse do JSON
+    const books: Book[] = JSON.parse(fileContents);
+
+    // Ajuste a lógica de retorno:
+    // Se 'id' é fornecido, encontra o livro. Se não, retorna o primeiro (para a página Home)
+    return id ? books.find(book => book.id === id) : books[0];
+  } catch (error) {
+    console.error('Failed to read books.json directly from file system:', error);
     return undefined;
   }
-  const books: Book[] = await res.json();
-  return books.find(book => book.id === id);
 }
 
 export default async function BookDetailPage({ params }: { params: Promise<{ id: string }>}) {
