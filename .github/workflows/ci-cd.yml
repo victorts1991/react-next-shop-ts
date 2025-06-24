@@ -52,9 +52,6 @@ jobs:
 
       - name: Fazer Deploy com Vercel CLI
         run: |
-          vercel pull --yes --environment=production \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --project=${{ env.VERCEL_PROJECT_ID }} \
-            --org=${{ env.VERCEL_ORG_ID }}
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} --project=${{ env.VERCEL_PROJECT_ID }} --org=${{ env.VERCEL_ORG_ID }}
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} 
           vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
