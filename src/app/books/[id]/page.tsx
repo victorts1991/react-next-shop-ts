@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Book } from '@/types';
 import AddToCartButton from '@/components/AddToCartButton'; 
-import BookActionsClient from '@/components/client-components/BookActionsClient'; 
 
 
 async function getBook(id: string): Promise<Book | undefined> {
@@ -36,7 +35,7 @@ export default async function BookDetailPage({ params }: { params: { id: string 
         <p className="text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-4">Por: {book.author}</p>
         <p className="text-4xl font-extrabold text-green-600 dark:text-green-400 mb-6">R$ {book.price.toFixed(2)}</p>
         <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed mb-8">{book.description}</p>
-        <BookActionsClient book={book} />
+        <AddToCartButton book={book} />
       </div>
     </main>
   );
