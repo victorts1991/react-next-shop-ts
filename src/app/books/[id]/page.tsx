@@ -14,7 +14,7 @@ async function getBook(id: string): Promise<Book | undefined> {
 }
 
 export default async function BookDetailPage({ params }: { params: { id: string } }) {
-  const { id } = await params; 
+  const { id } = params;
   const book = await getBook(id);
 
   if (!book) {
