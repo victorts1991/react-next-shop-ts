@@ -13,7 +13,7 @@ export default function CartPage() {
 
   return (
     <main className="container mx-auto p-8">
-      <h1 className="text-4xl lg:text-5xl font-extrabold text-center mb-10 text-blue-700 dark:text-blue-400">Seu Carrinho de Compras</h1>
+      <h1 className="text-4xl lg:text-5xl font-extrabold text-center mb-10 text-blue-700 dark:text-white">Seu Carrinho de Compras</h1>
       {cartItems.length === 0 ? (
         <div className="text-center text-gray-600 dark:text-gray-400 mt-16">
           <p className="text-2xl mb-4">Seu carrinho está vazio.</p>
@@ -24,14 +24,16 @@ export default function CartPage() {
       ) : (
         <div className="space-y-6">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm bg-white dark:bg-gray-800">
+
+            <div key={item.id} className="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm bg-white dark:bg-gray-800 flex-col sm:flex-row">
               <Image src={item.image} alt={item.title} width={100} height={150} className="object-cover rounded mr-6 flex-shrink-0" />
-              <div className="flex-grow">
+              <div className="flex-grow mb-4">
                 <h2 className="text-xl md:text-2xl font-semibold mb-1 text-gray-900 dark:text-gray-100">{item.title}</h2>
                 <p className="text-gray-600 dark:text-gray-400 text-lg mb-2">Por: {item.author}</p>
-                <p className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400">R$ {item.price.toFixed(2)}</p>
+                <p className="text-xl md:text-2xl font-bold text-center text-blue-600 dark:text-blue-400">R$ {item.price.toFixed(2)}</p>
               </div>
-              <div className="flex items-center space-x-3 ml-auto">
+                  
+              <div className="flex w-full justify-center items-center space-x-3 ml-auto mb-4">
                 <button
                   onClick={() => dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))}
                   className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-md text-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
@@ -55,7 +57,7 @@ export default function CartPage() {
                   Remover
                 </button>
               </div>
-              <p className="text-2xl font-bold ml-8 text-gray-900 dark:text-gray-100">R$ {(item.price * item.quantity).toFixed(2)}</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">R$ {(item.price * item.quantity).toFixed(2)}</p>
             </div>
           ))}
           <div className="text-right mt-8 p-5 border-t-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-b-lg shadow-lg">
