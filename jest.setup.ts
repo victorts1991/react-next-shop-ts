@@ -2,17 +2,36 @@ import '@testing-library/jest-dom'
 
 process.env.NEXT_PUBLIC_BASE_URL = 'http://localhost:3000'; 
 
-const localStorageMock = (() => {
-  let store: { [key: string]: string } = {};
-  return {
-    getItem: jest.fn((key: string) => store[key] || null),
-    setItem: jest.fn((key: string, value: string) => { store[key] = value.toString(); }),
-    clear: jest.fn(() => { store = {}; }),
-    removeItem: jest.fn((key: string) => { delete store[key]; }),
-  };
-})()
+const mockLocalStorageStore: { [key: string]: string } = {};
 
-Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+const mockLocalStorage = {
+  getItem: jest.fn((key: string) => {
+    return mockLocalStorageStore[key] || null;
+  }),
+  setItem: jest.fn((key: string, value: string) => {
+    mockLocalStorageStore[key] = value;
+  }),
+  removeItem: jest.fn((key: string) => {
+    delete mockLocalStorageStore[key];
+  }),
+  clear: jest.fn(() => {
+    Object.keys(mockLocalStorageStore).forEach(key => delete mockLocalStorageStore[key]);
+  }),
+};
+
+Object.defineProperty(window, 'localStorage', {
+  writable: true,
+  value: mockLocalStorage,
+});
+
+beforeAll(() => {
+    
+
+});
+
+afterAll(() => {
+    jest.restoreAllMocks(); 
+});
 
 global.fetch = jest.fn((input: RequestInfo | URL, init?: RequestInit | undefined) => {
   

@@ -18,34 +18,50 @@ export default async function HomePage() {
 
   if (!books.length) {
     return (
-      <main className="container mx-auto p-8 text-center min-h-[80vh] flex items-center justify-center">
-        <p className="text-xl text-gray-600">Nenhum livro encontrado no momento.</p>
+      <main className="flex items-center justify-center min-h-[80vh] bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <p className="text-2xl text-gray-600 dark:text-gray-400">Nenhum livro encontrado no momento.</p>
       </main>
     );
   }
 
   return (
-    <main className="container mx-auto p-8">
-      <h1 className="text-5xl font-extrabold text-center mb-12 text-blue-700 dark:text-blue-400">Nossa Coleção de Livros</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <main className="container mx-auto p-8 py-12 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+      <h1 className="text-5xl font-extrabold text-center mb-16 text-blue-700 dark:text-blue-400">Nossa Coleção de Livros</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10"> {/* Grid responsivo */}
         {books.map((book) => (
-          <div key={book.id} className="border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg dark:shadow-xl dark:shadow-gray-800/50 overflow-hidden flex flex-col transition-transform transform hover:scale-105 bg-white dark:bg-gray-800">
-            <div className="relative w-full h-64">
+          <div key={book.id} className="
+            bg-white dark:bg-gray-800 rounded-xl shadow-xl dark:shadow-gray-800/50 
+            overflow-hidden flex flex-col transform transition-transform duration-300 hover:scale-105
+            border border-gray-200 dark:border-gray-700
+          ">
+            <div className="relative w-full h-72">
               <Image
                 src={book.image}
                 alt={book.title}
-                width={50}
-                height={50}
-                objectFit="cover"
+                fill={true}
                 className="rounded-t-xl"
-                priority={book.id === '1'} 
+                priority={book.id === '1'}
               />
             </div>
-            <div className="p-5 flex-grow flex flex-col">
-              <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100 line-clamp-2">{book.title}</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-3 text-lg">{book.author}</p>
-              <p className="text-3xl font-extrabold text-green-600 dark:text-green-400 mb-4">R$ {book.price.toFixed(2)}</p>
-              <Link href={`/books/${book.id}`} className="mt-auto block bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg text-center transition-colors duration-200">
+            <div className="p-6 flex-grow flex flex-col"> 
+              <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100 leading-tight line-clamp-2">
+                {book.title}
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 text-lg mb-3">
+                {book.author}
+              </p>
+              <p className="text-3xl font-extrabold text-green-600 dark:text-green-400 mb-4">
+                R$ {book.price.toFixed(2)}
+              </p>
+              <Link
+                href={`/books/${book.id}`}
+                className="
+                  mt-auto block text-center 
+                  bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 
+                  text-white font-semibold py-3 px-6 rounded-lg 
+                  transition-colors duration-200 shadow-md hover:shadow-lg
+                "
+              >
                 Ver Detalhes
               </Link>
             </div>
