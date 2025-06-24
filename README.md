@@ -1,7 +1,5 @@
 # NextBookStore 📚 - Your Online Bookstore with Next.js
 
-[![GitHub Actions Workflow Status](https://github.com/victorts1991/react-next-shop-ts/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/victorts1991/react-next-shop-ts/actions/workflows/ci-cd.yml)
-
 ## 📖 About the Project
 
 NextBookStore is a modern e-commerce web application built with **Next.js 15.x (App Router)**, designed to simulate an online bookstore. This project demonstrates web development best practices, including global state management, advanced responsiveness, a robust theme system, and a complete CI/CD pipeline for automated testing and deployment.
@@ -43,7 +41,7 @@ Ensure you have Node.js (version 20 or higher recommended) and npm (or Yarn) ins
 ### Installation
 
 ```bash
-git clone [https://github.com/victorts1991/react-next-shop-ts.git](https://github.com/victorts1991/react-next-shop-ts.git)
+git clone https://github.com/victorts1991/react-next-shop-ts.git
 ```
 ```bash
 cd react-next-shop-ts

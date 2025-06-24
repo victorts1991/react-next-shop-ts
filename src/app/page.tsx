@@ -29,7 +29,7 @@ export default async function HomePage() {
 
   return (
     <main className="container mx-auto p-8 py-12 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
-      <h1 className="text-5xl font-extrabold text-center mb-16 text-blue-700 dark:text-blue-400">A Nossa Coleção de Livros</h1>
+      <h1 className="text-5xl font-extrabold text-center mb-16 text-blue-700 dark:text-blue-400">Nossa Coleção de Livros</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10"> {/* Grid responsivo */}
         {books.map((book) => (
           <div key={book.id} className="
